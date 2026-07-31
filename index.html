@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rahul Raushan | Full Stack Developer & Data Analyst</title>
+  <meta name="description" content="Portfolio of Rahul Raushan — Full Stack Developer, Data Analysis Learner, AI/LLM Enthusiast" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            dark: { bg: '#0a0a0f', card: '#111118', border: '#1e1e2a' },
+            light: { bg: '#ffffff', card: '#f8fafc', border: '#e2e8f0' },
+            accent: { DEFAULT: '#06b6d4', hover: '#22d3ee', light: '#e0f2fe' }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'slide-up': 'slideUp 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* ----- Global Base Styles ----- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark mode defaults */
+    html.dark body {
+      background-color: #0a0a0f;
+      color: #e2e8f0;
+    }
+
+    html.light body {
+      background-color: #ffffff;
+      color: #0f172a;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    html.dark ::-webkit-scrollbar-track { background: #0a0a0f; }
+    html.dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    html.light ::-webkit-scrollbar-track { background: #f1f5f9; }
+    html.light ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+
+    /* ----- Glassmorphism Navbar ----- */
+    .navbar-glass {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: background-color 0.3s ease;
+    }
+    html.dark .navbar-glass { background: rgba(10, 10, 15, 0.85); border-bottom: 1px solid rgba(30, 30, 42, 0.6); }
+    html.light .navbar-glass { background: rgba(255, 255, 255, 0.85); border-bottom: 1px solid rgba(226, 232, 240, 0.8); }
+
+    /* ----- Nav Links ----- */
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    html.dark .nav-link { color: #94a3b8; }
+    html.light .nav-link { color: #475569; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+    html.dark .nav-link:hover, html.dark .nav-link.active { color: #e2e8f0; }
+    html.light .nav-link:hover, html.light .nav-link.active { color: #0f172a; }
+
+    /* ----- Gradient Text ----- */
+    .gradient-text {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ----- Buttons ----- */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      font-weight: 600;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid;
+    }
+    html.dark .btn-outline { border-color: #334155; color: #e2e8f0; }
+    html.light .btn-outline { border-color: #cbd5e1; color: #0f172a; }
+    .btn-outline:hover {
+      border-color: #06b6d4;
+      color: #06b6d4;
+      transform: translateY(-2px);
+    }
+
+    /* ----- Card Styles ----- */
+    .card {
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    html.dark .card { background: #111118; border: 1px solid #1e1e2a; }
+    html.light .card { background: #f8fafc; border: 1px solid #e2e8f0; }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    html.dark .card:hover { border-color: #06b6d4; }
+    html.light .card:hover { border-color: #06b6d4; box-shadow: 0 12px 40px rgba(6, 182, 212, 0.1); }
+
+    /* ----- Skill Tags ----- */
+    .skill-tag {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+    }
+    html.dark .skill-tag { background: rgba(6, 182, 212, 0.1); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.2); }
+    html.light .skill-tag { background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; }
+
+    /* ----- Tech Tags (Project) ----- */
+    .tech-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: 9999px;
+    }
+    html.dark .tech-tag { background: rgba(30, 30, 42, 0.8); color: #94a3b8; border: 1px solid #1e1e2a; }
+    html.light .tech-tag { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
+    /* ----- Timeline ----- */
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      position: relative;
+      z-index: 2;
+    }
+    html.dark .timeline-line { background: #1e1e2a; }
+    html.light .timeline-line { background: #e2e8f0; }
+
+    /* ----- Contact Form ----- */
+    .form-input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    html.dark .form-input { background: #111118; border: 1px solid #1e1e2a; color: #e2e8f0; }
+    html.light .form-input { background: #f8fafc; border: 1px solid #e2e8f0; color: #0f172a; }
+    .form-input:focus {
+      border-color: #06b6d4;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+    }
+    html.dark .form-input::placeholder { color: #475569; }
+    html.light .form-input::placeholder { color: #94a3b8; }
+
+    /* ----- Mobile Nav Overlay ----- */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      padding: 6rem 2rem 2rem;
+      transition: right 0.3s ease;
+      z-index: 40;
+    }
+    html.dark .mobile-nav { background: rgba(10, 10, 15, 0.97); border-left: 1px solid #1e1e2a; }
+    html.light .mobile-nav { background: rgba(255, 255, 255, 0.98); border-left: 1px solid #e2e8f0; }
+    .mobile-nav.open { right: 0; }
+
+    /* ----- Toggle Switch ----- */
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    html.dark .theme-toggle { background: rgba(30, 30, 42, 0.6); color: #fbbf24; }
+    html.light .theme-toggle { background: #f1f5f9; color: #475569; }
+    .theme-toggle:hover { transform: scale(1.1); }
+
+    /* ----- Section Title ----- */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+    html.dark .section-subtitle { color: #64748b; }
+    html.light .section-subtitle { color: #64748b; }
+
+    /* ----- Hamburger ----- */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 50;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    html.dark .hamburger span { background: #e2e8f0; }
+    html.light .hamburger span { background: #0f172a; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ----- Section Fade Animations ----- */
+    .section-hidden { opacity: 0; transform: translateY(40px); transition: all 0.7s ease-out; }
+    .section-visible { opacity: 1; transform: translateY(0); }
+
+    /* ----- Misc ----- */
+    .backdrop-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      background: rgba(0,0,0,0.5);
+      display: none;
+    }
+    .backdrop-overlay.open { display: block; }
+
+    @media (min-width: 768px) {
+      .section-title { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- BACKDROP (mobile) -->
+  <!-- ============================================================ -->
+  <div id="backdrop" class="backdrop-overlay"></div>
+
+  <!-- ============================================================ -->
+  <!-- MOBILE NAV -->
+  <!-- ============================================================ -->
+  <nav id="mobileNav" class="mobile-nav flex flex-col gap-6">
+    <a href="#about" class="nav-link text-lg mobile-nav-link">About</a>
+    <a href="#skills" class="nav-link text-lg mobile-nav-link">Skills</a>
+    <a href="#projects" class="nav-link text-lg mobile-nav-link">Projects</a>
+    <a href="#experience" class="nav-link text-lg mobile-nav-link">Experience</a>
+    <a href="#education" class="nav-link text-lg mobile-nav-link">Education</a>
+    <a href="#contact" class="nav-link text-lg mobile-nav-link">Contact</a>
+    <a href="#contact" class="btn-primary mt-4 text-center mobile-nav-link">Get In Touch</a>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- HEADER / NAVBAR -->
+  <!-- ============================================================ -->
+  <header id="navbar" class="navbar-glass fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      <!-- Brand -->
+      <a href="#" class="text-xl font-bold tracking-tight gradient-text">Rahul Raushan</a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#about" class="nav-link text-sm">About</a>
+        <a href="#skills" class="nav-link text-sm">Skills</a>
+        <a href="#projects" class="nav-link text-sm">Projects</a>
+        <a href="#experience" class="nav-link text-sm">Experience</a>
+        <a href="#education" class="nav-link text-sm">Education</a>
+        <a href="#contact" class="nav-link text-sm">Contact</a>
+        <a href="#contact" class="btn-primary text-sm px-5 py-2.5">Get In Touch</a>
+      </div>
+
+      <!-- Right: Theme Toggle + Hamburger -->
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <!-- Sun (light mode) -->
+          <svg id="sunIcon" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 7.66l-.71-.71M4.05 4.05l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon (dark mode) -->
+          <svg id="moonIcon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        <div id="hamburger" class="hamburger md:hidden">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- HERO SECTION -->
+  <!-- ============================================================ -->
+  <section id="hero" class="min-h-screen flex items-center justify-center px-5 pt-24 pb-16">
+    <div class="max-w-4xl mx-auto text-center section-hidden">
+      <!-- Greeting -->
+      <p class="text-sm font-medium tracking-widest uppercase mb-4">
+        <span class="gradient-text">Full Stack Developer & Data Analyst</span>
+      </p>
+
+      <!-- Name -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
+        <span class="gradient-text">Rahul Raushan</span>
+      </h1>
+
+      <!-- Headline -->
+      <p class="text-lg sm:text-xl md:text-2xl font-medium mb-4">
+        <span class="gradient-text">Full Stack Developer | Data Analysis Learner | AI/LLM Enthusiast</span>
+      </p>
+
+      <!-- Subtext -->
+      <p class="text-base sm:text-lg max-w-3xl mx-auto leading-relaxed mb-8">
+        <span class="opacity-80">Motivated Full Stack Web Developer and Data Analysis learner with hands-on experience in building real-world web applications and analyzing datasets. Skilled in modern JavaScript frameworks, backend development, and data visualization. Currently exploring AI and Large Language Models (LLMs) to build intelligent applications.</span>
+      </p>
+
+      <!-- Location, Email, Phone -->
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm mb-10">
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Ara, Bhojpur, Bihar, India
+        </span>
+        <a href="mailto:rahulraushan802312@gmail.com" class="flex items-center gap-2 hover:text-accent transition-colors">
+          <svg class="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          rahulraushan802312@gmail.com
+        </a>
+        <a href="tel:+916207251134" class="flex items-center gap-2 hover:text-accent transition-colors">
+          <svg class="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          +91-6207251134
+        </a>
+      </div>
+
+      <!-- Social Links + CTA -->
+      <div class="flex flex-wrap justify-center items-center gap-4">
+        <!-- GitHub -->
+        <a href="https://github.com/Mraushan28" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm px-4 py-2.5" aria-label="GitHub">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/rahul-raushan-278633269/" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm px-4 py-2.5" aria-label="LinkedIn">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <!-- CTA -->
+        <a href="#contact" class="btn-primary text-sm">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ABOUT SECTION -->
+  <!-- ============================================================ -->
+  <section id="about" class="py-20 px-5">
+    <div class="max-w-4xl mx-auto section-hidden">
+      <h2 class="section-title">About Me</h2>
+      <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
+      <div class="card p-8 md:p-10">
+        <p class="text-base md:text-lg leading-relaxed">
+          I am a motivated Full Stack Web Developer and Data Analysis learner with hands-on experience in building real-world web applications and analyzing datasets. Skilled in modern JavaScript frameworks, backend development, and data visualization. Currently exploring AI and Large Language Models (LLMs) to build intelligent applications.
+        </p>
+        <p class="text-base md:text-lg leading-relaxed mt-4">
+          Based in Ara, Bhojpur, Bihar, India, I am pursuing a Bachelor of Technology (B.Tech) at Bihar Engineering University. My passion lies at the intersection of web development and data-driven insights, and I am constantly seeking opportunities to learn and grow in the fields of AI and machine learning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SKILLS SECTION -->
+  <!-- ============================================================ -->
+  <section id="skills" class="py-20 px-5">
+    <div class="max-w-6xl mx-auto section-hidden">
+      <h2 class="section-title">Skills & Expertise</h2>
+      <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
+      <p class="section-subtitle">Technologies and tools I work with</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Technical Languages -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Technical Languages</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python (Beginner)</span>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Frontend Development</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">Next.js</span>
+          </div>
+        </div>
+
+        <!-- Backend & Database -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Backend & Database</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">MongoDB (Basic)</span>
+          </div>
+        </div>
+
+        <!-- Data Analysis & Visualization -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Data Analysis & Visualization</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Plotly</span>
+          </div>
+        </div>
+
+        <!-- AI / ML & Engineering -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3L12 5.25 14.25 3M12 5.25V3m0 5.25V21" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">AI / ML & Engineering</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Machine Learning (ML)</span>
+            <span class="skill-tag">Natural Language Processing (NLP)</span>
+            <span class="skill-tag">Large Language Models (LLM)</span>
+            <span class="skill-tag">Model Integration</span>
+            <span class="skill-tag">Prompt Engineering</span>
+          </div>
+        </div>
+
+        <!-- Developer Tools -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Developer Tools</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Jupyter Notebook</span>
+          </div>
+        </div>
+
+        <!-- Additional Skills -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Additional Skills</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">WordPress Web Design</span>
+            <span class="skill-tag">Graphic Design (Canva)</span>
+            <span class="skill-tag">Digital Marketing</span>
+            <span class="skill-tag">Social Media Management</span>
+            <span class="skill-tag">Freelancing</span>
+            <span class="skill-tag">Blogging</span>
+          </div>
+        </div>
+
+        <!-- Languages Known -->
+        <div class="card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-400 to-blue-500 text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h3 class="font-semibold text-lg">Languages Known</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag">Hindi (Fluent)</span>
+            <span class="skill-tag">English (Intermediate)</span>
+            <span class="skill-tag">Bhojpuri (Fluent)</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PROJECTS SECTION -->
+  <!-- ============================================================ -->
+  <section id="projects" class="py-20 px-5">
+    <div class="max-w-6xl mx-auto section-hidden">
+      <h2 class="section-title">Projects</h2>
+      <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
+      <p class="section-subtitle">Real-world applications I have built and contributed to</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Project 1 -->
+        <div class="card flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Homoeopathy Medicine E-Commerce Platform</h3>
+          <p class="text-sm leading-relaxed mb-4 flex-1">
+            Built a full-stack e-commerce application with dynamic product management. Developed responsive frontend using React.js, Next.js, and Tailwind CSS. Implemented backend APIs using Node.js and handled database operations with MongoDB. Focused on performance optimization and user-friendly UI/UX design.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Tailwind CSS</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card flex flex-col">
+          <h3 class="text-xl font-bold mb-2">AI Integrated Web Application</h3>
+          <p class="text-sm leading-relaxed mb-4 flex-1">
+            Developing a full-stack web application integrated with AI/LLM-based features. Working on intelligent automation and smart data-driven functionalities. (Ongoing)
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="tech-tag">AI/LLM</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Prompt Engineering</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="card flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Sales Data Analysis Project</h3>
+          <p class="text-sm leading-relaxed mb-4 flex-1">
+            Performed data cleaning and preprocessing using Python, Pandas, and NumPy. Created visual insights using Matplotlib, Seaborn, and Plotly. Analyzed trends and generated actionable insights from sales data.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Matplotlib</span>
+            <span class="tech-tag">Seaborn</span>
+            <span class="tech-tag">Plotly</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="card flex flex-col">
+          <h3 class="text-xl font-bold mb-2">Personal Portfolio Website</h3>
+          <p class="text-sm leading-relaxed mb-4 flex-1">
+            Designed and developed a responsive portfolio website using HTML, CSS, JavaScript, and Tailwind CSS to showcase projects, skills, and achievements.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="card flex flex-col">
+          <h3 class="text-xl font-bold mb-2">TimeFlow – Time & Project Management Application</h3>
+          <p class="text-sm leading-relaxed mb-4 flex-1">
+            Built a responsive time management and productivity web application using React.js. Implemented Progressive Web App (PWA) features for offline capability, instant loading, and app-like user experience. Designed intuitive UI/UX for workflow tracking and project organization.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">PWA</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Tailwind CSS</span>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-auto">
+            <a href="https://timeflow-manage.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-primary text-sm px-4 py-2">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Mraushan28" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm px-4 py-2">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Source Code
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- EXPERIENCE SECTION -->
+  <!-- ============================================================ -->
+  <section id="experience" class="py-20 px-5">
+    <div class="max-w-4xl mx-auto section-hidden">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
+      <p class="section-subtitle">Professional experience and internships</p>
+
+      <div class="space-y-8">
+
+        <!-- Exp 1: Sentiment Analysis Intern -->
+        <div class="card p-6 md:p-8">
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                <h3 class="text-lg font-bold">Sentiment Analysis Intern (Machine Learning Intern)</h3>
+                <span class="text-xs font-medium text-accent">April 2026 - May 2026</span>
+              </div>
+              <p class="text-sm font-medium mb-3">Training and Placement Cell, IIIT Bhagalpur (Remote)</p>
+              <ul class="text-sm leading-relaxed space-y-2">
+                <li>Developed a Machine Learning model to analyze social media text and classify user sentiment into positive, negative, or neutral categories.</li>
+                <li>Performed data preprocessing, feature extraction, model training, and evaluation using Python, Pandas, NumPy, and Scikit-learn.</li>
+                <li>Applied Natural Language Processing (NLP) techniques and Large Language Models (LLM) concepts to extract valuable insights from user-generated content.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 2: Social Media Manager -->
+        <div class="card p-6 md:p-8">
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                <h3 class="text-lg font-bold">Social Media Manager (Internship)</h3>
+              </div>
+              <p class="text-sm font-medium mb-2">Sahityakriti India Pvt Ltd</p>
+              <p class="text-sm leading-relaxed">Managed social media strategies, content creation, and analytics. Achieved 30% growth in audience engagement over 7 months.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 3: Digital Media Designer -->
+        <div class="card p-6 md:p-8">
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                <h3 class="text-lg font-bold">Digital Media Designer (Internship)</h3>
+              </div>
+              <p class="text-sm font-medium mb-2">Amulya Academy</p>
+              <p class="text-sm leading-relaxed">Designed posters, banners, and social media creatives using Canva. Created visual content for marketing and educational campaigns.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- EDUCATION SECTION -->
+  <!-- ============================================================ -->
+  <section id="education" class="py-20 px-5">
+    <div class="max-w-4xl mx-auto section-hidden">
+      <h2 class="section-title">Education</h2>
+      <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
+      <p class="section-subtitle">Academic background and qualifications</p>
+
+      <div class="space-y-6">
+
+        <!-- B.Tech -->
+        <div class="card p-6 md:p-8">
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div>
+              <h3 class="text-lg font-bold">Bachelor of Technology (B.Tech)</h3>
+              <p class="text-sm font-medium text-accent">Bihar Engineering University</p>
+              <p class="text-sm mt-1">2023 - 2027</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intermediate -->
+        <div class="card p-6 md:p-8">
+          <div class="flex items-start gap-4">
+            <div class="timeline-dot mt-1.5"></div>
+            <div>
+              <h3 class="text-lg font-bold">Intermediate (Class 12) - 84%</h3>
+              <p class="text-sm font-medium text-accent">H.D Jain College, Ara</p>
+              <p class="text-sm mt-1">2020 - 2022</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT / FOOTER SECTION -->
+  <!-- ============================================================ -->
+  <section id="contact" class="py-20 px-5">
+    <div class="max-w-6xl mx-auto section-hidden">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mx-auto mb-8"></div>
+      <p class="section-subtitle">Have a project in mind or want to collaborate? Reach out.</p>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Contact Form -->
+        <div class="card p-6 md:p-8">
+          <form id="contactForm" action="https://formspree.io/f/xqerolyw" method="POST" class="space-y-5">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1.5">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your Name" required class="form-input" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1.5">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required class="form-input" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-1.5">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Your message..." required class="form-input resize-none"></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full justify-center">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Details + Social -->
+        <div class="flex flex-col gap-6">
+          <!-- Contact Info -->
+          <div class="card p-6 md:p-8 space-y-4">
+            <h3 class="text-lg font-bold">Contact Details</h3>
+            <div class="space-y-3">
+              <a href="tel:+916207251134" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                <svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                +91-6207251134
+              </a>
+              <a href="mailto:rahulraushan802312@gmail.com" class="flex items-center gap-3 text-sm hover:text-accent transition-colors">
+                <svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                rahulraushan802312@gmail.com
+              </a>
+              <span class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                Ara, Bhojpur, Bihar, India
+              </span>
+            </div>
+          </div>
+
+          <!-- Social & Copyright -->
+          <div class="card p-6 md:p-8 space-y-5">
+            <h3 class="text-lg font-bold">Connect</h3>
+            <div class="flex gap-4">
+              <a href="https://github.com/Mraushan28" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm px-4 py-2.5" aria-label="GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/rahul-raushan-278633269/" target="_blank" rel="noopener noreferrer" class="btn-outline text-sm px-4 py-2.5" aria-label="LinkedIn">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+            </div>
+            <div class="pt-4 border-t border-gray-700/30 light:border-gray-200">
+              <p class="text-sm opacity-60">&copy; 2026 Rahul Raushan. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================================================ -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ---- ELEMENTS ----
+      const htmlEl = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const sunIcon = document.getElementById('sunIcon');
+      const moonIcon = document.getElementById('moonIcon');
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const backdrop = document.getElementById('backdrop');
+      const contactForm = document.getElementById('contactForm');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      // ---- THEME TOGGLE ----
+      function setTheme(theme) {
+        if (theme === 'light') {
+          htmlEl.classList.remove('dark');
+          htmlEl.classList.add('light');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          htmlEl.classList.remove('light');
+          htmlEl.classList.add('dark');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+        localStorage.setItem('theme', theme);
+      }
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else {
+        setTheme('dark');
+      }
+
+      themeToggle.addEventListener('click', function() {
+        const isDark = htmlEl.classList.contains('dark');
+        setTheme(isDark ? 'light' : 'dark');
+      });
+
+      // ---- MOBILE NAV ----
+      function openMobile() {
+        hamburger.classList.add('open');
+        mobileNav.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobile() {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      hamburger.addEventListener('click', function() {
+        if (mobileNav.classList.contains('open')) {
+          closeMobile();
+        } else {
+          openMobile();
+        }
+      });
+
+      backdrop.addEventListener('click', closeMobile);
+
+      mobileNavLinks.forEach(function(link) {
+        link.addEventListener('click', closeMobile);
+      });
+
+      // ---- ACTIVE NAV LINK ON SCROLL (Intersection Observer) ----
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      if (sections.length > 0 && navLinks.length > 0) {
+        const observerOptions = {
+          root: null,
+          rootMargin: '-100px 0px -60% 0px',
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + id) {
+                  link.classList.add('active');
+                }
+              });
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(function(section) {
+          observer.observe(section);
+        });
+      }
+
+      // ---- SCROLL REVEAL ANIMATION ----
+      const hiddenElements = document.querySelectorAll('.section-hidden');
+
+      const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.1
+      });
+
+      hiddenElements.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      // ---- CONTACT FORM VALIDATION ----
+      contactForm.addEventListener('submit', function(e) {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !message) {
+          e.preventDefault();
+          alert('Please fill in all fields.');
+          return;
+        }
+
+        if (!email.includes('@') || !email.includes('.')) {
+          e.preventDefault();
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        // If validation passes, form submits to Formspree naturally.
+        // Formspree will forward the message to rahulraushan802312@gmail.com.
+      });
+
+    })();
+  </script>
+</body>
+</html>
+
